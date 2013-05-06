@@ -1,49 +1,100 @@
 using UnityEngine;
 using System.Collections;
+using Holoville.HOTween;
 
 public class Game : MonoBehaviour {
 
-    /*public GameObject player;
-    private Player playerComp;
+    public GameObject boardPiece;
     public GameObject drifterPrefab;
-    public GameObject startText;
-    public GameObject gameOverText;
-    //public bool gameOverBool;
-    public bool levelFinished;
-    public int currentLevel;*/
+    public GameObject tower;
+    public GameObject towerLaser;
 
     void Awake() {
         Application.targetFrameRate = 60;
     }
 
 	void Start() {
-        //LoadLevel(1);
         // Load up the first level board
         // Create a grid of cubes that fills the board size
-
+        LoadLevel(1);
 	}
 	
 	void Update() {
-        
-        /*if (!player.activeSelf && playerComp.livesLeft > 0)
-            RespawnPlayer();
+        /*if (Input.GetKey("space")) { 
+            // Find closest drifter and fire at him
+            float minimumDistance = 0.0f;
+            //GameObject closestDrifter;
 
-        if (levelFinished) {
-            levelFinished = false;
+            foreach (GameObject drifter in GameObject.FindGameObjectsWithTag("Enemy")) {
+                Vector3 diff = drifter.transform.position - tower.transform.position;
 
-            print("Should be loading level " + currentLevel);
-            LoadLevel(++currentLevel);
+                if (diff.sqrMagnitude < minimumDistance) {
+                    minimumDistance = diff.sqrMagnitude;
+                    closestDrifter = drifter;
+                }
+            }
+            //towerLaser = new GameObject
+
+            //Instantiate(towerLaser, tower.transform.position, Quaternion.identity);
         }*/
 	}
 
-    void RespawnPlayer() {
-        /*playerComp.respawnTimer += Time.deltaTime;
-        if (playerComp.respawnTimer >= playerComp.respawnLimit) {
-            playerComp.respawnTimer = 0.0f;
-            player.SetActive(true);
-            playerComp.init();
-        }*/
+    void LoadLevel(int level) {
+        // if level 1, create 5 drifters 1 second apart
+        if (level == 1) {
+            float frequency = 1.0f;
+            int amount = 5;
+            float speed = drifterPrefab.GetComponent<Drifter>().speed;
+            StartCoroutine(LevelCoroutine("drifter", frequency, amount, speed));
+        }
     }
+
+    IEnumerator LevelCoroutine(string type, float frequency, int amount, float speed = 1.0f) {
+        
+        Vector3 position = new Vector3(-16, 16, 0);
+        
+        for (int i = 0; i < amount; i++) {
+            if (type.Equals("drifter")) {
+                GameObject tempDrifter = CreateDrifter(position);
+                Sequence mySequence = new Sequence(new SequenceParms());
+                TweenParms parms = new TweenParms();
+                parms.Ease(EaseType.Linear);
+
+                parms.Prop("position", new Vector3(14, 16, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 5 / speed, parms));
+                parms.Prop("position", new Vector3(14, 10, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 1 / speed, parms));
+                parms.Prop("position", new Vector3(-16, 10, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 5 / speed, parms));
+                parms.Prop("position", new Vector3(-16, 4, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 1 / speed, parms));
+                parms.Prop("position", new Vector3(14, 4, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 5 / speed, parms));
+                parms.Prop("position", new Vector3(14, -2, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 1 / speed, parms));
+                parms.Prop("position", new Vector3(-16, -2, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 5 / speed, parms));
+                parms.Prop("position", new Vector3(-16, -8, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 1 / speed, parms));
+                parms.Prop("position", new Vector3(14, -8, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 5 / speed, parms));
+                parms.Prop("position", new Vector3(14, -14, 0));
+                mySequence.Append(HOTween.To(tempDrifter.transform, 1 / speed, parms));
+                mySequence.Play();
+            }
+                
+            yield return new WaitForSeconds(frequency);
+        }
+    }
+
+    GameObject CreateDrifter(Vector3 pos) {
+        return (GameObject)Instantiate(drifterPrefab, pos, Quaternion.identity);
+    }
+
+
+
+
+
 
     /*public void GameOver() {
         Instantiate(gameOverText, new Vector3(0.5f, 0.5f, 0), Quaternion.identity);

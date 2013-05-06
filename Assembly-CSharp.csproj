@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{689D9C60-2577-4B28-C05E-EFF5B7059F6B}</ProjectGuid>
+	<ProjectGuid>{9B282EBB-F650-CE4C-3165-30EC9E911FE9}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -37,13 +37,16 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>G:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>G:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Core\ABSHOTweenEditorElement.cs" />
+     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\HOTweenComponent.cs" />
+     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\HOTweenManager.cs" />
      <Compile Include="Assets\Resources\Scripts\BoardPiece.cs" />
      <Compile Include="Assets\Resources\Scripts\Enemies\Drifter.cs" />
      <Compile Include="Assets\Resources\Scripts\Enemies\DrifterLaser.cs" />
@@ -52,27 +55,28 @@
      <Compile Include="Assets\Resources\Scripts\GUI\GUITextFader.cs" />
      <Compile Include="Assets\Resources\Scripts\GUI\MainMenuGUI.cs" />
      <Compile Include="Assets\Resources\Scripts\Game.cs" />
-     <Compile Include="Assets\Resources\Scripts\KeepAlive.cs" />
+     <Compile Include="Assets\Resources\Scripts\Pathing.cs" />
      <Compile Include="Assets\Resources\Scripts\Player\PlayerHUD.cs" />
-     <Compile Include="Assets\Resources\Scripts\Player\PlayerLaser.cs" />
-     <Compile Include="Assets\Resources\Scripts\iTweenPath\iTweenPath.cs" />
+     <Compile Include="Assets\Resources\Scripts\Player\Tower.cs" />
+     <Compile Include="Assets\Resources\Scripts\Player\TowerLaser.cs" />
      <Compile Include="Assets\Sources\LightningBolt.cs" />
-     <Compile Include="Assets\iTween\Plugins\iTween.cs" />
-     <Compile Include="Assets\iTween\Sample\MoveSample.cs" />
-     <Compile Include="Assets\iTween\Sample\RotateSample.cs" />
-     <Compile Include="Assets\iTween\Sample\SampleInfo.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
-     <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\HOTween\HOTween_License.txt" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Holoville\HOUnityEditor\Editor\HOEditorUtils.xml" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Holoville\HOUnityEditor\Editor\HOEditorGUIFramework.xml" />
+ <Reference Include="HOTween">
+ <HintPath>Assets\HOTween\HOTween.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{84BFFD6A-658F-354F-CAF7-25255C36B31F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{E47A0FCA-D7E0-BF8F-E4A2-81B35CEDBDE4}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{0883B410-8851-F505-A5A0-496712025306}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{56CF48BB-6862-E849-59E6-11F6EA07F882}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
