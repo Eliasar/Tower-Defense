@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>G:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>G:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +58,7 @@
      <Compile Include="Assets\Resources\Scripts\Pathing.cs" />
      <Compile Include="Assets\Resources\Scripts\Player\PlayerHUD.cs" />
      <Compile Include="Assets\Resources\Scripts\Player\Tower.cs" />
-     <Compile Include="Assets\Resources\Scripts\Player\TowerLaser.cs" />
+     <Compile Include="Assets\Resources\Scripts\Player\TowerProjectile.cs" />
      <Compile Include="Assets\Sources\LightningBolt.cs" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\HOTween\HOTween_License.txt" />

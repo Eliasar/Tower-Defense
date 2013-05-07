@@ -11,14 +11,10 @@ public class Drifter : Enemy {
     }
 
     protected override void Update() {
-
+        base.Update();
     }
 
     protected override void OnBecameInvisible() {
-
-    }
-
-    void Reset() {
-
+        base.OnBecameInvisible();
     }
 }
