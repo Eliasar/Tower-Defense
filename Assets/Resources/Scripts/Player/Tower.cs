@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Tower : MonoBehaviour {
 
@@ -7,14 +8,16 @@ public class Tower : MonoBehaviour {
     public float shotInterval;
     public float shotTimer;
     public bool canFire;
+
+    public List<GameObject> enemiesInRange;
     public GameObject closestEnemy;
-    public float closestDistance;
 
 	// Use this for initialization
 	void Start () {
         shotTimer = 0.0f;
         canFire = true;
-        closestDistance = 0.0f;
+
+        enemiesInRange = new List<GameObject>();
         closestEnemy = null;
 	}
 	
@@ -25,51 +28,57 @@ public class Tower : MonoBehaviour {
             canFire = false;
         }
         else {
-            shotTimer = 0.0f;
             canFire = true;
         }
 
-        if (closestEnemy) {
-            closestDistance = Vector3.Distance(closestEnemy.transform.position,
-                                           transform.position);
+        // Find closest in list
+        if (canFire && enemiesInRange.Count > 0) {
+            FindClosestInList();
+            Fire(closestEnemy);
         }
 	}
 
-    void OnCollisionStay(Collision col) {
-        if (canFire) {
-            if (col.gameObject.CompareTag("Enemy")) {
-                float distance = Vector3.Distance(col.gameObject.transform.position,
-                                                  transform.position);
-                print("Distance = " + distance + " and closest distance = " + closestDistance);
+    void OnCollisionEnter(Collision col) {
+        if (col.gameObject.CompareTag("Enemy")) {
+            print(col.gameObject + " has come into range.");
+            enemiesInRange.Add(col.gameObject);
+        }
+    }
 
-                if (closestDistance == 0) {
-                    closestDistance = distance;
-                    closestEnemy = col.gameObject;
-                }
-                else if (distance < closestDistance) {
-                    print("Found a lower distance! (" + distance + "):(" + closestDistance + ")");
-                    closestDistance = distance;
-                    closestEnemy = col.gameObject;
-                }
-                else if (distance > transform.GetComponent<SphereCollider>().radius || 
-                    !closestEnemy) {
-                    print("Out of range. Resetting closest distance and object");
-                    closestDistance = 0.0f;
-                    closestEnemy = null;
-                }
-                else {
-                    print("No closer distance found. Enemy @ " + closestEnemy.transform.position);
-                }
+    void OnCollisionExit(Collision col) {
+        if (col.gameObject.CompareTag("Enemy")) {
+            enemiesInRange.Remove(col.gameObject);
+        }
+    }
 
-                // TODO: fix. Will fire x times where x = number of enemies currently in range.
-                if(distance == closestDistance)
-                    Fire(closestEnemy);
+    void FindClosestInList() { 
+        // Given a list, find the closest distance to the tower
+        float minimumDistance = 100.0f;
+
+        foreach (GameObject enemy in enemiesInRange) {
+            if (enemy) {
+                float distance = Vector3.Distance(enemy.transform.position, transform.position);
+
+                if (distance < minimumDistance) {
+                    print("New minimum distance: " + distance);
+                    minimumDistance = distance;
+                    closestEnemy = enemy;
+                }
+            } else {
+                Destroy(enemy);
             }
         }
     }
 
-    void Fire(GameObject enemyGameObject) {
+    void Fire(GameObject target) {
+        
+        // Fire ze missles!
         GameObject temp = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
-        temp.GetComponent<TowerLaser>().drifterPrefab = enemyGameObject;
+        temp.GetComponent<TowerLaser>().target = target;
+        print("Target @ " + target.transform.position);
+
+        // Reset timer and canFire
+        canFire = false;
+        shotTimer = 0.0f;
     }
 }

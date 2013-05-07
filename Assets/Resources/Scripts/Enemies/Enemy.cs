@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
-    public int HP;
+    public float HP;
     public GameObject explosionPrefab;
 
 	void Start () {
@@ -23,10 +23,13 @@ public class Enemy : MonoBehaviour {
                 Hit(col.gameObject.GetComponent<TowerLaser>().power);
     }
 
-    void Hit(int powerOfHit) {
+    void Hit(float powerOfHit) {
         HP -= powerOfHit;
         if (HP <= 0) {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            foreach (GameObject temp in GameObject.FindGameObjectsWithTag("Player")) {
+                temp.GetComponent<Tower>().enemiesInRange.Remove(gameObject);
+            }
             Destroy(gameObject);
         }
     }

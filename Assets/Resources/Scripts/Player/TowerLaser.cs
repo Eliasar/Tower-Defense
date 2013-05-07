@@ -3,26 +3,35 @@ using System.Collections;
 
 public class TowerLaser : MonoBehaviour {
 
-    public int speed;
-    public int power;
+    public float speed;
+    public float power;
+    public float range;
 
-    public GameObject drifterPrefab;
+    public GameObject target;
 
-    private float startTime;
-    private float journeyLength;
+    private float distanceTraveled;
 
 	void Start () {
-        startTime = Time.time;
-        journeyLength = Vector3.Distance(drifterPrefab.transform.position,
-                                         transform.position);
+        speed = 0.00001f;
+        power = 2.0f;
+        range = 10.0f;
+
+        distanceTraveled = 0.0f;
+
+        //print("IMMA FIRIN' AT " + target.transform.position);
 	}
 	
 	void Update () {
-        float distCovered = (Time.time - startTime) * speed;
-        float fracJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(transform.position,
-                                          drifterPrefab.transform.position,
-                                          fracJourney);
+        if (target != null) {
+            transform.LookAt(target.transform);
+            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            distanceTraveled += Time.deltaTime * speed;
+        } else {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
+
+        if (distanceTraveled >= range)
+            Destroy(gameObject);
 	}
 
     void OnBecameInvisible() {

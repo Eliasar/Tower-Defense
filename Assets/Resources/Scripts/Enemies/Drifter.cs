@@ -19,5 +19,6 @@ public class Drifter : Enemy {
     }
 
     void Reset() {
+
     }
 }

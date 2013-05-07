@@ -15,7 +15,6 @@ public class Game : MonoBehaviour {
 
 	void Start() {
         // Load up the first level board
-        // Create a grid of cubes that fills the board size
         LoadLevel(1);
 	}
 	
@@ -43,7 +42,7 @@ public class Game : MonoBehaviour {
         // if level 1, create 5 drifters 1 second apart
         if (level == 1) {
             float frequency = 1.0f;
-            int amount = 5;
+            int amount = 10;
             float speed = drifterPrefab.GetComponent<Drifter>().speed;
             StartCoroutine(LevelCoroutine("drifter", frequency, amount, speed));
         }
