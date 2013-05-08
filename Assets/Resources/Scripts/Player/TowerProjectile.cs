@@ -8,8 +8,6 @@ public class TowerProjectile : MonoBehaviour {
 
     public GameObject target;
 
-    public ParticleSystem ps;
-
 	protected virtual void Start() { }
 
     protected virtual void LateUpdate() { }
@@ -25,11 +23,7 @@ public class TowerProjectile : MonoBehaviour {
         }
     }
 
-    void SelfDestruct() {
-        ps = transform.FindChild("Particle Holder").GetComponent<ParticleSystem>();
-        ps.transform.parent = null;
-        ps.GetComponent<ParticleAnimator>().autodestruct = true;
-        ps.Stop();
+    protected virtual void SelfDestruct() {        
         Destroy(gameObject);
     }
 }

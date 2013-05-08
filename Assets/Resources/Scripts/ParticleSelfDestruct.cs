@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ExplosionSelfDestruct : MonoBehaviour {
+public class ParticleSelfDestruct : MonoBehaviour {
 
     private ParticleSystem ps;
 
@@ -10,7 +10,7 @@ public class ExplosionSelfDestruct : MonoBehaviour {
 	}
 	
 	void Update () {
-        if (ps.isStopped) 
+        if (!ps.IsAlive())
             Destroy(gameObject);
 	}
 }

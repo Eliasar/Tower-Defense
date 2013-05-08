@@ -3,12 +3,15 @@ using System.Collections;
 
 public class Laser : TowerProjectile {
 
-    private Vector3 targetVelocity;
-    private float distance;
-    private float timeToTarget;
-    private Vector3 positionToAimAt;
+    public Vector3 targetVelocity;
+    public float distance;
+    public float timeToTarget;
+    public Vector3 positionToAimAt;
 
     protected override void Start() {
+        print("Laser spawned @ " + transform.position);
+        print("Target @ " + target.transform.position);
+
         targetVelocity = target.GetComponent<Enemy>().velocity / Time.deltaTime;
         distance = Vector3.Distance(transform.position, target.transform.position);
         timeToTarget = distance / speed;
@@ -20,4 +23,8 @@ public class Laser : TowerProjectile {
 	protected override void LateUpdate () {
         transform.position += transform.forward * speed * Time.deltaTime;
 	}
+
+    protected override void SelfDestruct() {
+        base.SelfDestruct();
+    }
 }
