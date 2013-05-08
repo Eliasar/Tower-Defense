@@ -6,22 +6,16 @@ public class Enemy : MonoBehaviour {
     public float HP;
     public GameObject explosionPrefab;
 
-    // To calculate 'velocity'
-    private Vector3 lastPosition;
-    //private float currPosition;
+    public Vector3 lastPos;
     public Vector3 velocity;
 
 	void Start () {
-        lastPosition = transform.position;
-        velocity = Vector3.zero;
+        lastPos = transform.position;
 	}
 
     protected virtual void Update() {
-        // Calculate speed
-        velocity = transform.position - lastPosition;
-
-        // Update lastPosition
-        lastPosition = transform.position;
+        velocity = transform.position - lastPos;
+        lastPos = transform.position;
     }
 
     protected virtual void OnBecameInvisible() {

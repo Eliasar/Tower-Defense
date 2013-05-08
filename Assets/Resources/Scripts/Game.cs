@@ -23,7 +23,7 @@ public class Game : MonoBehaviour {
         // if level 1, create x drifters y second apart
         if (level == 1) {
             float frequency = 0.5f;
-            int amount = 10;
+            int amount = 100;
             float speed = drifterPrefab.GetComponent<Drifter>().speed;
             StartCoroutine(LevelCoroutine("drifter", frequency, amount, speed));
         }
