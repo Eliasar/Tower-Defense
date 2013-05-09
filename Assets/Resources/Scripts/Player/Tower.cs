@@ -8,6 +8,8 @@ public class Tower : MonoBehaviour {
     public float shotInterval;
     public float shotTimer;
     public bool canFire;
+    public float rotationSpeed;
+    public string targetType;
 
     public List<GameObject> enemiesInRange;
     public GameObject closestEnemy;
@@ -15,6 +17,7 @@ public class Tower : MonoBehaviour {
 	void Start () {
         shotTimer = shotInterval;
         canFire = true;
+        rotationSpeed = 3.0f;
 
         enemiesInRange = new List<GameObject>();
         closestEnemy = null;
@@ -33,11 +36,23 @@ public class Tower : MonoBehaviour {
 
         // Find closest in list
         if (enemiesInRange.Count > 0) {
-            FindClosestInList();
+            switch (targetType) { 
+                case "First":
+                    closestEnemy = enemiesInRange[0];
+                    break;
+                case "Last":
+                    closestEnemy = enemiesInRange[enemiesInRange.Count - 1];
+                    break;
+                case "Closest":
+                default:
+                    FindClosestInList();
+                    break;
+            }
 
             // Look at closest
-            transform.LookAt(closestEnemy.transform);
-            Debug.DrawLine(transform.position, closestEnemy.transform.position, Color.blue);
+            RotateToTarget();
+            
+            Debug.DrawLine(transform.position, closestEnemy.transform.position, Color.green);
 
             //Fire!
             if (canFire)
@@ -58,6 +73,17 @@ public class Tower : MonoBehaviour {
         if (col.CompareTag("Enemy")) {
             enemiesInRange.Remove(col.gameObject);
         }
+    }
+
+    void RotateToTarget() {
+        /*Vector3 _direction = (closestEnemy.transform.position - transform.position).normalized;
+        Quaternion _lookRotation = Quaternion.LookRotation(_direction, Vector3.forward);
+        //_lookRotation.x = 0.0f;
+        //_lookRotation.z = 0.0f;
+        //_lookRotation.y = 0.0f;
+        transform.rotation =
+            Quaternion.Slerp(transform.rotation, _lookRotation, rotationSpeed * Time.deltaTime);*/
+        transform.LookAt(closestEnemy.transform);
     }
 
     void FindClosestInList() {

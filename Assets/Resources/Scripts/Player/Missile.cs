@@ -6,6 +6,7 @@ public class Missile : TowerProjectile {
     public Vector3 forward;
 
 	protected override void LateUpdate () {
+        speed += Time.deltaTime*5;
         if (target) {
             transform.LookAt(target.transform);
             float step = speed * Time.deltaTime;

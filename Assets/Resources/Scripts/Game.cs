@@ -16,7 +16,12 @@ public class Game : MonoBehaviour {
 	}
 	
 	void Update() {
-
+        if (Input.GetMouseButtonDown(0)) {
+            Ray mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            obj.transform.position = new Vector3(mRay.origin.x, mRay.origin.y, 1);
+            print("Placed object @ " + obj.transform.position);
+        }
 	}
 
     void LoadLevel(int level) {
