@@ -19,17 +19,14 @@ public class Missile : TowerProjectile {
 	}
 
     protected override void SelfDestruct() {
-        base.SelfDestruct();
 
         if (transform.FindChild("Missile Trail")) {
             Transform ps = transform.FindChild("Missile Trail");
             ps.particleSystem.Stop();
             ps.parent = null;
-            Destroy(ps.gameObject, 1.0f);
-            //ps.Stop();
-
-            //ps.transform.parent = null;
-            //Destroy(ps.gameObject, 1.0f);
+            Destroy(ps.gameObject, 0.5f);
         }
+
+        base.SelfDestruct();
     }
 }

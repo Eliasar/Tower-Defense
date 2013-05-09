@@ -9,8 +9,6 @@ public class Laser : TowerProjectile {
     public Vector3 positionToAimAt;
 
     protected override void Start() {
-        print("Laser spawned @ " + transform.position);
-        print("Target @ " + target.transform.position);
 
         targetVelocity = target.GetComponent<Enemy>().velocity / Time.deltaTime;
         distance = Vector3.Distance(transform.position, target.transform.position);

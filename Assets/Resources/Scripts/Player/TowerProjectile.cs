@@ -23,7 +23,7 @@ public class TowerProjectile : MonoBehaviour {
         }
     }
 
-    protected virtual void SelfDestruct() {        
+    protected virtual void SelfDestruct() {
         Destroy(gameObject);
     }
 }

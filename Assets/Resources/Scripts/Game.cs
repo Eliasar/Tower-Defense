@@ -23,7 +23,7 @@ public class Game : MonoBehaviour {
         // if level 1, create x drifters y second apart
         if (level == 1) {
             float frequency = 0.5f;
-            int amount = 100;
+            int amount = 200;
             float speed = drifterPrefab.GetComponent<Drifter>().speed;
             StartCoroutine(LevelCoroutine("drifter", frequency, amount, speed));
         }
@@ -39,6 +39,7 @@ public class Game : MonoBehaviour {
                 Sequence mySequence = new Sequence(new SequenceParms());
                 TweenParms parms = new TweenParms();
                 parms.Ease(EaseType.Linear);
+                parms.AutoKill(true);
 
                 parms.Prop("position", new Vector3(14, 16, 0));
                 mySequence.Append(HOTween.To(tempDrifter.transform, 5 / speed, parms));
