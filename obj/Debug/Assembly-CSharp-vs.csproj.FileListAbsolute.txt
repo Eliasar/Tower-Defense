@@ -13,3 +13,18 @@ C:\Users\mwells\Documents\GitHub\Tower-Defense\Temp\bin\Debug\HOTween.xml
 C:\Users\mwells\Documents\GitHub\Tower-Defense\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\mwells\Documents\GitHub\Tower-Defense\obj\Debug\Assembly-CSharp.dll
 C:\Users\mwells\Documents\GitHub\Tower-Defense\obj\Debug\Assembly-CSharp.pdb
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\Assembly-CSharp.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\Assembly-CSharp.pdb
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\Assembly-UnityScript-firstpass.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\HOTween.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\NGUI.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\UnityEditor.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\UnityEngine.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\Mono.Cecil.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\nunit.framework.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+G:\My Documents\GitHub Projects\Tower-Defense\Temp\bin\Debug\HOTween.xml
+G:\My Documents\GitHub Projects\Tower-Defense\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+G:\My Documents\GitHub Projects\Tower-Defense\obj\Debug\Assembly-CSharp.dll
+G:\My Documents\GitHub Projects\Tower-Defense\obj\Debug\Assembly-CSharp.pdb
