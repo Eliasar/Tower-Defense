@@ -53,7 +53,7 @@ public class HOTweenManagerInspector : Editor
 	{
 		src = target as HOTweenManager;
 		srcGO = src.gameObject;
-		isActive = ( srcGO.active == true );
+		isActive = ( srcGO.activeSelf == true );
 		enabled = IsSingleManager();
 	}
 	
@@ -61,7 +61,7 @@ public class HOTweenManagerInspector : Editor
 	{
 		EditorGUIUtility.LookLikeControls( labelsWidth, fieldsWidth );
 		
-		if ( srcGO.active != isActive ) {
+		if ( srcGO.activeSelf != isActive ) {
 			isActive = !isActive;
 			enabled = IsSingleManager();
 		}

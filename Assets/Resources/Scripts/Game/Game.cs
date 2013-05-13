@@ -15,14 +15,7 @@ public class Game : MonoBehaviour {
         LoadLevel(1);
 	}
 	
-	void Update() {
-        /*if (Input.GetMouseButtonDown(0)) {
-            Ray mRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            obj.transform.position = new Vector3(mRay.origin.x, mRay.origin.y, 1);
-            print("Placed object @ " + obj.transform.position);
-        }*/
-	}
+	void Update() { }
 
     public void LoadLevel(int level) {
         // if level 1, create x drifters y second apart

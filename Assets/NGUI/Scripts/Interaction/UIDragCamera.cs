@@ -54,7 +54,7 @@ public class UIDragCamera : IgnoreTimeScale
 
 	void OnPress (bool isPressed)
 	{
-		if (enabled && gameObject.activeSelf && draggableCamera != null)
+        if (enabled && gameObject.activeSelf && draggableCamera != null)
 		{
 			draggableCamera.Press(isPressed);
 		}
@@ -78,7 +78,7 @@ public class UIDragCamera : IgnoreTimeScale
 
 	void OnScroll (float delta)
 	{
-		if (enabled && gameObject.active && draggableCamera != null)
+        if (enabled && gameObject.activeSelf && draggableCamera != null)
 		{
 			draggableCamera.Scroll(delta);
 		}

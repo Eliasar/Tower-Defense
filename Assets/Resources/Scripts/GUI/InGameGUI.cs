@@ -56,9 +56,10 @@ public class InGameGUI : MonoBehaviour {
             // Place turret
             if (Input.GetMouseButtonDown(0) && lastHitObj) {
                 if (lastHitObj.CompareTag("PlacementPlane_Open")) {
-                    GameObject newStructure = Instantiate(allStructures[structureIndex],
-                        lastHitObj.transform.position, Quaternion.identity) as GameObject;
+                    Instantiate(allStructures[structureIndex],
+                        lastHitObj.transform.position, Quaternion.identity);
                     lastHitObj.tag = "PlacementPlane_Taken";
+                    lastHitObj.renderer.enabled = false;
                 }
             }
         }
@@ -79,14 +80,13 @@ public class InGameGUI : MonoBehaviour {
 
     public void SetBuildChoice(GameObject btnObj) {
         string btnName = btnObj.name;
-        print(btnName);
         isBuilding = true;
 
         if (btnName == "Missile Tower Button") {
             structureIndex = 0;
         } else if (btnName == "Laser Tower Button") {
             structureIndex = 1;
-        } else if (btnName == "Flamethrower Tower Button") {
+        } else if (btnName == "Flame Tower Button") {
             structureIndex = 2;
         } else if (btnName == "Cancel Build Button") {
             isBuilding = false;
@@ -95,7 +95,8 @@ public class InGameGUI : MonoBehaviour {
         // Display the Placement Panels
         if (isBuilding) {
             foreach (Transform thePlane in placementPlanesRoot) {
-                thePlane.gameObject.renderer.enabled = true;
+                if(thePlane.CompareTag("PlacementPlane_Open"))
+                    thePlane.gameObject.renderer.enabled = true;
             }
         } else {
             foreach (Transform thePlane in placementPlanesRoot) {
