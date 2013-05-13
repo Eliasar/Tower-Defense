@@ -23,6 +23,13 @@ public class TowerProjectile : MonoBehaviour {
         }
     }
 
+    /*void OnTriggerEnter(Collider col) {
+        if (col.gameObject.CompareTag("Enemy")) {
+            target = null;
+            SelfDestruct();
+        }
+    }*/
+
     protected virtual void SelfDestruct() {        
         Destroy(gameObject);
     }

@@ -86,6 +86,8 @@ public class InGameGUI : MonoBehaviour {
             structureIndex = 0;
         } else if (btnName == "Laser Tower Button") {
             structureIndex = 1;
+        } else if (btnName == "Flamethrower Tower Button") {
+            structureIndex = 2;
         } else if (btnName == "Cancel Build Button") {
             isBuilding = false;
         }
@@ -101,7 +103,6 @@ public class InGameGUI : MonoBehaviour {
             }
         }
 
-        print("structureIndex = " + structureIndex + "; UpdateGUI() called.");
         UpdateGUI();
     }
 }

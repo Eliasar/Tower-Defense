@@ -4,13 +4,29 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 
     public float HP;
+    private float startingHP;
+    public UISlider healthBar;
+    //private Component _healthBarComponent;
+
     public GameObject explosionPrefab;
 
-    public Vector3 lastPos;
+    private Vector3 lastPos;
     public Vector3 velocity;
 
-	void Start () {
+    void Awake() {
+        startingHP = HP;
+        //healthBar = GetComponent<UISlider>();
+
         lastPos = transform.position;
+    }
+
+	void Start() {
+        if (healthBar == null) {
+            Debug.LogError("Could not find the UISlider Component!");
+            return;
+        }
+
+        UpdateHealth();
 	}
 
     protected virtual void Update() {
@@ -34,7 +50,20 @@ public class Enemy : MonoBehaviour {
             foreach (GameObject temp in GameObject.FindGameObjectsWithTag("Player")) {
                 temp.GetComponent<Tower>().enemiesInRange.Remove(gameObject);
             }
-            Destroy(gameObject);
+            StartCoroutine(DelayedDestroy(healthBar.gameObject));
+            StartCoroutine(DelayedDestroy(gameObject));
         }
+        UpdateHealth();
+    }
+
+    void UpdateHealth() {
+        if (HP > 0) {
+            healthBar.GetComponent<UISlider>().sliderValue = HP / startingHP;
+        }
+    }
+
+    IEnumerator DelayedDestroy(GameObject obj) {
+        yield return new WaitForEndOfFrame();
+        Destroy(obj);
     }
 }

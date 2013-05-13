@@ -49,14 +49,16 @@ public class Tower : MonoBehaviour {
                     break;
             }
 
-            // Look at closest
-            RotateToTarget();
-            
-            Debug.DrawLine(transform.position, closestEnemy.transform.position, Color.green);
+            if (closestEnemy) {
+                // Look at closest
+                RotateToTarget();
 
-            //Fire!
-            if (canFire)
-                Fire(closestEnemy);
+                Debug.DrawLine(transform.position, closestEnemy.transform.position, Color.green);
+                
+                //Fire!
+                if (canFire)
+                    Fire(closestEnemy);
+            }
         }
         else {
             closestEnemy = null;
@@ -76,14 +78,8 @@ public class Tower : MonoBehaviour {
     }
 
     void RotateToTarget() {
-        /*Vector3 _direction = (closestEnemy.transform.position - transform.position).normalized;
-        Quaternion _lookRotation = Quaternion.LookRotation(_direction, Vector3.forward);
-        //_lookRotation.x = 0.0f;
-        //_lookRotation.z = 0.0f;
-        //_lookRotation.y = 0.0f;
-        transform.rotation =
-            Quaternion.Slerp(transform.rotation, _lookRotation, rotationSpeed * Time.deltaTime);*/
-        transform.LookAt(closestEnemy.transform);
+        if(closestEnemy)
+            transform.LookAt(closestEnemy.transform);
     }
 
     void FindClosestInList() {

@@ -5,12 +5,13 @@ using Holoville.HOTween;
 public class Game : MonoBehaviour {
 
     public GameObject drifterPrefab;
+    public GameObject enemyContainer;
 
     void Awake() {
         Application.targetFrameRate = 60;
     }
 
-	void Start() {
+	public void Start() {
         LoadLevel(1);
 	}
 	
@@ -23,11 +24,11 @@ public class Game : MonoBehaviour {
         }*/
 	}
 
-    void LoadLevel(int level) {
+    public void LoadLevel(int level) {
         // if level 1, create x drifters y second apart
         if (level == 1) {
             float frequency = 0.5f;
-            int amount = 100;
+            int amount = 15;
             float speed = drifterPrefab.GetComponent<Drifter>().speed;
             StartCoroutine(LevelCoroutine("drifter", frequency, amount, speed));
         }
@@ -40,8 +41,10 @@ public class Game : MonoBehaviour {
         for (int i = 0; i < amount; i++) {
             if (type.Equals("drifter")) {
                 GameObject tempDrifter = CreateDrifter(position);
+                tempDrifter.transform.parent = enemyContainer.transform;
                 Sequence mySequence = new Sequence(new SequenceParms());
                 TweenParms parms = new TweenParms();
+                parms.AutoKill(true);
                 parms.Ease(EaseType.Linear);
 
                 parms.Prop("position", new Vector3(15, 14, 0));
