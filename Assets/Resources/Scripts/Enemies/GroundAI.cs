@@ -4,9 +4,9 @@ using Pathfinding;
 
 public class GroundAI : MonoBehaviour {
 
-    public Transform tankBody;
-    public Transform tankCompass;
-    public float turnSpeed = 10.0f;
+    //public Transform tankBody;
+    //public Transform tankCompass;
+    //public float turnSpeed = 10.0f;
 
     public Vector3 targetPosition;
     public Seeker seeker;
@@ -46,10 +46,11 @@ public class GroundAI : MonoBehaviour {
         dir *= speed * Time.fixedDeltaTime;
 
         controller.SimpleMove(dir);
+        //transform.position += dir;
 
         // Face direction of next waypoint
         //tankCompass.LookAt(path.vectorPath[currentWaypoint]);
-        //tankBody.rotatoin(Quaternion.Lerp(tankBody.rotation, tankCompass.rotation, Time.deltaTime * turnSpeed));
+        //tankBody.rotation(Quaternion.Lerp(tankBody.rotation, tankCompass.rotation, Time.deltaTime * turnSpeed));
 
         // Check if we are close enough to the next waypoint
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance) {

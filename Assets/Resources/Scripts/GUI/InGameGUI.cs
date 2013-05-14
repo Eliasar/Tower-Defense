@@ -59,7 +59,7 @@ public class InGameGUI : MonoBehaviour {
                     Instantiate(allStructures[structureIndex],
                         lastHitObj.transform.position, Quaternion.identity);
                     lastHitObj.tag = "PlacementPlane_Taken";
-                    lastHitObj.renderer.enabled = false;
+                    //lastHitObj.renderer.enabled = false;
                 }
             }
         }

@@ -12,7 +12,7 @@ public class Game : MonoBehaviour {
     }
 
 	public void Start() {
-        LoadLevel(1);
+        //LoadLevel(1);
 	}
 	
 	void Update() { }
