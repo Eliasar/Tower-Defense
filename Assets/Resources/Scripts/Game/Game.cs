@@ -12,7 +12,7 @@ public class Game : MonoBehaviour {
     }
 
 	public void Start() {
-        //LoadLevel(1);
+        LoadLevel(1);
 	}
 	
 	void Update() { }
@@ -35,7 +35,7 @@ public class Game : MonoBehaviour {
             if (type.Equals("drifter")) {
                 GameObject tempDrifter = CreateDrifter(position);
                 tempDrifter.transform.parent = enemyContainer.transform;
-                Sequence mySequence = new Sequence(new SequenceParms());
+                /*Sequence mySequence = new Sequence(new SequenceParms());
                 TweenParms parms = new TweenParms();
                 parms.AutoKill(true);
                 parms.Ease(EaseType.Linear);
@@ -60,7 +60,7 @@ public class Game : MonoBehaviour {
                 mySequence.Append(HOTween.To(tempDrifter.transform, 5 / speed, parms));
                 parms.Prop("position", new Vector3(15, -14, 0));
                 mySequence.Append(HOTween.To(tempDrifter.transform, 1 / speed, parms));
-                mySequence.Play();
+                mySequence.Play();*/
             }
                 
             yield return new WaitForSeconds(frequency);
@@ -68,6 +68,6 @@ public class Game : MonoBehaviour {
     }
 
     GameObject CreateDrifter(Vector3 pos) {
-        return (GameObject)Instantiate(drifterPrefab, pos, Quaternion.identity);
+        return (GameObject)Instantiate(drifterPrefab, drifterPrefab.transform.position, Quaternion.identity);
     }
 }
