@@ -53,7 +53,6 @@
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
-     <None Include="Assets\HOTween\HOTween_License.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
@@ -61,7 +60,6 @@
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
-     <None Include="Assets\Holoville\HOUnityEditor\Editor\HOEditorUtils.xml" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
@@ -80,7 +78,6 @@
      <None Include="Assets\AstarPathfindingProject\Readme.txt" />
      <None Include="Assets\NGUI\Examples\Other\English.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed).shader" />
-     <None Include="Assets\Holoville\HOUnityEditor\Editor\HOEditorGUIFramework.xml" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\License.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
@@ -94,9 +91,6 @@
  </Reference>
  <Reference Include="JsonFx.Json">
  <HintPath>Assets\AstarPathfindingProject\Plugins\JsonFx\JsonFx.Json.dll</HintPath>
- </Reference>
- <Reference Include="HOTween">
- <HintPath>Assets\HOTween\HOTween.dll</HintPath>
  </Reference>
  <Reference Include="NGUI">
  <HintPath>Assets\NGUI\DLLs\NGUI.dll</HintPath>

@@ -34,7 +34,7 @@ public class GroundAI : MonoBehaviour {
     }
 
 	void FixedUpdate() {
-        if (path == null) {
+        /*if (path == null) {
             return;
         }
         if (currentWaypoint >= path.vectorPath.Count) {
@@ -55,6 +55,6 @@ public class GroundAI : MonoBehaviour {
         // Check if we are close enough to the next waypoint
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
             currentWaypoint++;
-        }
+        }*/
 	}
 }
