@@ -23,6 +23,14 @@ public class InGameGUI : MonoBehaviour {
     public UISlicedSprite[] buildBtnGraphics;
     public int structureIndex;
 
+    // Tower Information window
+    public bool isTowerInfoWindowVisible;
+    public UIPanel towerInformationWindow;
+    public LayerMask towerCompassMask;
+    public LayerMask twoDGUIMask;
+    public GameObject towerHovered;
+    public GameObject towerSelected;
+
 	// Use this for initialization
 	void Start () {
         structureIndex = 0;
@@ -59,9 +67,49 @@ public class InGameGUI : MonoBehaviour {
                     Instantiate(allStructures[structureIndex],
                         lastHitObj.transform.position, Quaternion.identity);
                     lastHitObj.tag = "PlacementPlane_Taken";
-                    //lastHitObj.renderer.enabled = false;
                 }
             }
+        } else {
+
+            // Cast ray
+            Ray towerRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit towerRaycastHit;
+
+            if (Physics.Raycast(towerRay, out towerRaycastHit, 1000, towerCompassMask)) {
+                towerHovered = towerRaycastHit.collider.gameObject;
+            }
+            else {
+                towerHovered = null;
+            }
+
+            if (Input.GetMouseButtonDown(0) && towerHovered) {
+                towerSelected = towerHovered.transform.parent.gameObject;
+
+                string type;
+                int level;
+                int exp;
+
+                type = towerSelected.GetComponent<Tower>().type;
+                level = towerSelected.GetComponent<Tower>().level;
+                exp = towerSelected.GetComponent<Tower>().experience;
+
+                towerInformationWindow.transform.FindChild("Type").GetComponent<UILabel>().text = "Type: " + type;
+                towerInformationWindow.transform.FindChild("Level").GetComponent<UILabel>().text = "Level: " + level;
+                towerInformationWindow.transform.FindChild("Exp").GetComponent<UILabel>().text = "Exp: " + exp;
+
+                SetTowerInfoWindow(true);
+            }
+
+            /*if (Physics.Raycast(towerRay, out towerRaycastHit, twoDGUIMask)) {
+                if (Input.GetMouseButtonDown(0)) {
+                    //SetTowerInfoWindow(false);
+                    print("Clicked inside 2dGUI");
+                }
+            }*/
+
+            /*else if (Input.GetMouseButtonDown(0) && !towerSelected) {
+                SetTowerInfoWindow(false);
+            }*/
         }
 	}
 
@@ -105,5 +153,30 @@ public class InGameGUI : MonoBehaviour {
         }
 
         UpdateGUI();
+    }
+
+    // Sets the visibility of the Tower Information Window
+    public void SetTowerInfoWindow(bool set = false) {
+        //isTowerInfoWindowVisible = !isTowerInfoWindowVisible;
+        isTowerInfoWindowVisible = set;
+
+        NGUITools.SetActive(towerInformationWindow.gameObject, isTowerInfoWindowVisible);
+    }
+
+    // Sets the visibility of the Tower Information Window
+    public void ToggleTowerInfoWindow() {
+        isTowerInfoWindowVisible = !isTowerInfoWindowVisible;
+        //isTowerInfoWindowVisible = set;
+
+        NGUITools.SetActive(towerInformationWindow.gameObject, isTowerInfoWindowVisible);
+    }
+
+    // Set the targetting type of the tower selected
+    // Called from radio buttons in the 2DGUI
+    public void SetTargetType(bool btnObj) {
+        if (btnObj) {
+            print(UICheckbox.current.name + " selected.");
+            towerSelected.GetComponent<Tower>().type = UICheckbox.current.name;
+        }
     }
 }

@@ -37,10 +37,10 @@
     <Reference Include="System.XML" />
 	<Reference Include="System.Core" />
 	<Reference Include="UnityEngine">
-	  <HintPath>G:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>G:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -55,13 +55,6 @@
      <Compile Include="Assets\AstarPathfindingProject\Editor\ModifierEditors\RaycastModifierEditor.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Editor\ModifierEditors\SmoothModifierEditor.cs" />
      <Compile Include="Assets\AstarPathfindingProject\Editor\SeekerEditor.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\Core\HOTweenEditorGUI.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\Core\HOTweenEditorVars.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\Core\HOTweenPanelMode.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\Core\IHOTweenPanel.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\HOTweenComponentInspector.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\HOTweenEditor.cs" />
-     <Compile Include="Assets\Holoville\HOTween Extensions\HOTweenManager\Editor\HOTweenManagerInspector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\ComponentSelector.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUIMenu.cs" />
      <Compile Include="Assets\NGUI\Scripts\Editor\NGUISelectionTools.cs" />
@@ -94,7 +87,6 @@
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo20.txt" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
-     <None Include="Assets\HOTween\HOTween_License.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
      <None Include="Assets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
@@ -102,7 +94,6 @@
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\Projector Multiply.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
-     <None Include="Assets\Holoville\HOUnityEditor\Editor\HOEditorUtils.xml" />
      <None Include="Assets\AstarPathfindingProject\ExampleScenes\Materials\DiffuseAlwaysVisible.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
      <None Include="Assets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh.shader" />
@@ -121,7 +112,6 @@
      <None Include="Assets\AstarPathfindingProject\Readme.txt" />
      <None Include="Assets\NGUI\Examples\Other\English.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed).shader" />
-     <None Include="Assets\Holoville\HOUnityEditor\Editor\HOEditorGUIFramework.xml" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\License.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
@@ -142,18 +132,6 @@
  <Reference Include="JsonFx.Json">
  <HintPath>Assets\AstarPathfindingProject\Plugins\JsonFx\JsonFx.Json.dll</HintPath>
  </Reference>
- <Reference Include="HOEditorGUIFramework">
- <HintPath>Assets\Holoville\HOUnityEditor\Editor\HOEditorGUIFramework.dll</HintPath>
- </Reference>
- <Reference Include="HOEditorUtils">
- <HintPath>Assets\Holoville\HOUnityEditor\Editor\HOEditorUtils.dll</HintPath>
- </Reference>
- <Reference Include="HOTween">
- <HintPath>Assets\HOTween\HOTween.dll</HintPath>
- </Reference>
- <Reference Include="HOTweenV1_Editor">
- <HintPath>Assets\HOTween\Editor\HOTweenV1_Editor.dll</HintPath>
- </Reference>
  <Reference Include="NGUI">
  <HintPath>Assets\NGUI\DLLs\NGUI.dll</HintPath>
  </Reference>
@@ -161,7 +139,7 @@
  <HintPath>Assets\NGUI\DLLs\Editor\NGUI_Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
- <HintPath>G:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+ <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

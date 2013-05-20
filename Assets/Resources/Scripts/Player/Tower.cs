@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class Tower : MonoBehaviour {
 
+    // Self stats
+    public int level;
+    public int experience;
+    public string type;
+
     public GameObject laserPrefab;
     public float shotInterval;
     public float shotTimer;
