@@ -6,6 +6,7 @@ public class Game : MonoBehaviour {
     public GameObject drifterPrefab;
     public GameObject enemyContainer;
     public int cash;
+    public int score;
     public int lives;
     public int currentWave;
 
@@ -17,6 +18,7 @@ public class Game : MonoBehaviour {
         // Init lives, cash, etc.
         lives = 10;
         cash = 100;
+        score = 0;
         currentWave = 1;
 
         // Load level
@@ -51,7 +53,6 @@ public class Game : MonoBehaviour {
         for (int i = 0; i < waves; i++) {
             for (int j = 0; j < amount; j++) {
                 if (type.Equals("drifter")) {
-                    //GameObject tempDrifter = CreateDrifter(position);
                     GameObject tempDrifter = CreateDrifter(Vector3.zero);
                     tempDrifter.transform.parent = enemyContainer.transform;
                     tempDrifter.GetComponent<Enemy>().HP *= 1 + (i * 0.1f);

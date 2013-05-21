@@ -4,7 +4,15 @@ using System.Collections.Generic;
 
 public class Tower : MonoBehaviour {
 
-    public GameObject laserPrefab;
+    // Self stats
+    public int level;
+    public int experience;
+    public string type;
+    public int range;
+    public int power;
+    public float rateOfFire;
+
+    public GameObject projectilePrefab;
     public float shotInterval;
     public float shotTimer;
     public bool canFire;
@@ -45,7 +53,8 @@ public class Tower : MonoBehaviour {
                 case "Last":
                     closestEnemy = enemiesInRange[enemiesInRange.Count - 1];
                     break;
-                case "Closest":
+                case "Strong":
+                case "Weak":
                 default:
                     FindClosestInList();
                     break;
@@ -110,7 +119,7 @@ public class Tower : MonoBehaviour {
         Vector3 dir = transform.rotation * Vector3.forward;
         
         // Fire ze missles!
-        GameObject temp = Instantiate(laserPrefab,
+        GameObject temp = Instantiate(projectilePrefab,
             transform.position + dir,
             transform.rotation) as GameObject;
         temp.GetComponent<TowerProjectile>().target = target;
