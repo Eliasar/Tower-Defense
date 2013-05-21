@@ -1,8 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{BA3A102C-AF68-AB7B-246B-E92B917E377E}") = "Tower-Defense", "Assembly-CSharp-firstpass-vs.csproj", "{E47A0FCA-D7E0-BF8F-E4A2-81B35CEDBDE4}"
-EndProject
 Project("{BA3A102C-AF68-AB7B-246B-E92B917E377E}") = "Tower-Defense", "Assembly-CSharp-vs.csproj", "{9B282EBB-F650-CE4C-3165-30EC9E911FE9}"
 EndProject
 Project("{BA3A102C-AF68-AB7B-246B-E92B917E377E}") = "Tower-Defense", "Assembly-CSharp-Editor-vs.csproj", "{0FED2E11-7FA6-E16A-67E7-6FD31CE210A8}"
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E47A0FCA-D7E0-BF8F-E4A2-81B35CEDBDE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E47A0FCA-D7E0-BF8F-E4A2-81B35CEDBDE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E47A0FCA-D7E0-BF8F-E4A2-81B35CEDBDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E47A0FCA-D7E0-BF8F-E4A2-81B35CEDBDE4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B282EBB-F650-CE4C-3165-30EC9E911FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B282EBB-F650-CE4C-3165-30EC9E911FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B282EBB-F650-CE4C-3165-30EC9E911FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,7 +23,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																														GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																							GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
