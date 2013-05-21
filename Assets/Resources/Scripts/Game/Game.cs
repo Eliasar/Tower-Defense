@@ -28,7 +28,7 @@ public class Game : MonoBehaviour {
 
     IEnumerator LevelCoroutine(string type, float frequency, int amount, float speed = 1.0f) {
         
-        Vector3 position = new Vector3(-15, 14, 0);
+        Vector3 position = new Vector3(-14, 14, 0);
         
         for (int i = 0; i < amount; i++) {
             if (type.Equals("drifter")) {
