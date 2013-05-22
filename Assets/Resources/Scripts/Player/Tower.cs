@@ -8,13 +8,23 @@ public class Tower : MonoBehaviour {
     public int level;
     public int experience;
     public string type;
+<<<<<<< HEAD
 
     public GameObject laserPrefab;
+=======
+    public int range;
+    public int power;
+    public float rateOfFire;
+
+    public GameObject projectilePrefab;
+>>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b
     public float shotInterval;
     public float shotTimer;
     public bool canFire;
     public float rotationSpeed;
     public string targetType;
+    public int cost;                    // set in inspector
+    public GameObject tooltipPrefab;    // set in inspector
 
     public List<GameObject> enemiesInRange;
     public GameObject closestEnemy;
@@ -48,7 +58,8 @@ public class Tower : MonoBehaviour {
                 case "Last":
                     closestEnemy = enemiesInRange[enemiesInRange.Count - 1];
                     break;
-                case "Closest":
+                case "Strong":
+                case "Weak":
                 default:
                     FindClosestInList();
                     break;
@@ -108,10 +119,13 @@ public class Tower : MonoBehaviour {
     }
 
     void Fire(GameObject target) {
+
+        // Calculate direction of target
+        Vector3 dir = transform.rotation * Vector3.forward;
         
         // Fire ze missles!
-        GameObject temp = Instantiate(laserPrefab,
-            transform.position,
+        GameObject temp = Instantiate(projectilePrefab,
+            transform.position + dir,
             transform.rotation) as GameObject;
         temp.GetComponent<TowerProjectile>().target = target;
 

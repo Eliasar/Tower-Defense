@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Unity3D .gitignore file.
 #  Store this file at the root of your local repository.
 .DS_Store
@@ -15,3 +16,19 @@ Library/guidmapper
 Temp
 *.pidb
 build
+=======
+# Ignore The following directories / file extensions
+Library
+Temp
+obj
+
+# Ignore the following file extensions
+*.exe
+*.vcproject
+*.sln
+*.suo
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+>>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b

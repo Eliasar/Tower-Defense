@@ -7,27 +7,32 @@ public class Enemy : MonoBehaviour {
     public float HP;
     private float startingHP;
     public UISlider healthBar;
+    public int cashValue;               // set in inspector
 
-    public GameObject explosionPrefab;
+    public GameObject explosionPrefab;  // set in inspector
 
     private Vector3 lastPos;
     public Vector3 velocity;
 
-    public Vector3 targetPosition;
-    public Seeker seeker;
-    public Path path;
-    public float speed = 100.0f;
-    public float nextWaypointDistance = 3.0f;
+    private Vector3 targetPosition;
+    private Seeker seeker;
+    private Path path;
+    public float speed;                 // set in inspector
+    private float nextWaypointDistance;
     private int currentWaypoint = 0;
+    private bool takeLife;
 
     void Awake() {
         startingHP = HP;
         lastPos = transform.position;
+        seeker = GetComponent<Seeker>();
+        nextWaypointDistance = 0.1f;
+        takeLife = false;
     }
 
-	void Start() {
-        targetPosition = GameObject.FindWithTag("GroundTargetObject").transform.position;
-        GetNewPath();
+    void Start() {
+        targetPosition = GameObject.FindWithTag("End Zone").transform.position;
+        seeker.StartPath(transform.position, targetPosition, OnPathComplete);
 
         if (healthBar == null) {
             Debug.LogError("Could not find the UISlider Component!");
@@ -36,10 +41,6 @@ public class Enemy : MonoBehaviour {
 
         UpdateHealth();
 	}
-
-    void GetNewPath() {
-        seeker.StartPath(transform.position, targetPosition, OnPathComplete);
-    }
 
     void OnPathComplete(Path newPath) {
         if (!newPath.error) {
@@ -76,6 +77,12 @@ public class Enemy : MonoBehaviour {
     protected virtual void Update() {
         velocity = transform.position - lastPos;
         lastPos = transform.position;
+
+        if (takeLife) {
+            print("Take life!");
+            GameObject.Find("_Game Master").GetComponent<Game>().lives--;
+            takeLife = !takeLife;
+        }
     }
 
     protected virtual void OnBecameInvisible() {
@@ -85,15 +92,27 @@ public class Enemy : MonoBehaviour {
     void OnCollisionEnter(Collision col) {
             if (col.gameObject.CompareTag("Player Laser"))
                 Hit(col.gameObject.GetComponent<TowerProjectile>().power);
+            if (col.gameObject.CompareTag("End Zone")) {
+                print("Got to the end." + Time.time);
+                Hit(HP);
+                takeLife = true;
+            }
     }
 
     void Hit(float powerOfHit) {
         HP -= powerOfHit;
         if (HP <= 0) {
+
+            // Create Explosion
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             foreach (GameObject temp in GameObject.FindGameObjectsWithTag("Player")) {
                 temp.GetComponent<Tower>().enemiesInRange.Remove(gameObject);
             }
+
+            // Send cash to Game
+            GameObject.Find("_Game Master").GetComponent<Game>().cash += cashValue;
+
+            // Delayed Destroy
             StartCoroutine(DelayedDestroy(healthBar.gameObject));
             StartCoroutine(DelayedDestroy(gameObject));
         }
@@ -108,6 +127,7 @@ public class Enemy : MonoBehaviour {
 
     IEnumerator DelayedDestroy(GameObject obj) {
         yield return new WaitForEndOfFrame();
+
         Destroy(obj);
     }
 }
