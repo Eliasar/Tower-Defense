@@ -1,8 +1,5 @@
 using System.Collections;
-<<<<<<< HEAD
-=======
 using UnityEngine;
->>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b
 
 public class Game : MonoBehaviour {
 
@@ -48,16 +45,6 @@ public class Game : MonoBehaviour {
         }
     }
 
-<<<<<<< HEAD
-    IEnumerator LevelCoroutine(string type, float frequency, int amount, float speed = 1.0f) {
-        
-        Vector3 position = new Vector3(-14, 14, 0);
-        
-        for (int i = 0; i < amount; i++) {
-            if (type.Equals("drifter")) {
-                GameObject tempDrifter = CreateDrifter(position);
-                tempDrifter.transform.parent = enemyContainer.transform;
-=======
     IEnumerator LevelCoroutine(string type, float frequency, int amount, float speed = 1.0f, int waves = 5) {
 
         // Initial delay
@@ -72,7 +59,6 @@ public class Game : MonoBehaviour {
                 }
 
                 yield return new WaitForSeconds(frequency);
->>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b
             }
 
             // After wave delay

@@ -23,7 +23,6 @@ public class InGameGUI : MonoBehaviour {
     public UISlicedSprite[] buildBtnGraphics;
     public int structureIndex;
 
-<<<<<<< HEAD:Assets/Resources/Scripts/Game/InGameGUI.cs
     // Tower Information window
     public bool isTowerInfoWindowVisible;
     public UIPanel towerInformationWindow;
@@ -31,26 +30,15 @@ public class InGameGUI : MonoBehaviour {
     public LayerMask twoDGUIMask;
     public GameObject towerHovered;
     public GameObject towerSelected;
-=======
-    // Tower selection items
-    public LayerMask towerMask;
-    public GameObject towerSelected;
-    public GameObject uiPrefab;         // set in inspector
 
     // Score, cash, wave, lives labels
     public GameObject _gameMaster;
     public UILabel scoreCashLabel;
     public UILabel livesWaveLabel;
 
-    // DEBUG
-    private ArrayList rays;
->>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b:Assets/Resources/Scripts/GUI/InGameGUI.cs
-
 	// Use this for initialization
 	void Start () {
         structureIndex = 0;
-        _gameMaster = GameObject.Find("_Game Master");
-        rays = new ArrayList();
         UpdateGUI();
 	}
 	
@@ -82,11 +70,6 @@ public class InGameGUI : MonoBehaviour {
             // Place turret on mouse click
             if (Input.GetMouseButtonDown(0) && lastHitObj) {
                 if (lastHitObj.CompareTag("PlacementPlane_Open")) {
-<<<<<<< HEAD:Assets/Resources/Scripts/Game/InGameGUI.cs
-                    Instantiate(allStructures[structureIndex],
-                        lastHitObj.transform.position, Quaternion.identity);
-                    lastHitObj.tag = "PlacementPlane_Taken";
-=======
                     if (_gameMaster.GetComponent<Game>().cash > allStructures[structureIndex].GetComponent<Tower>().cost) {
                         Instantiate(allStructures[structureIndex],
                             lastHitObj.transform.position, Quaternion.identity);
@@ -94,22 +77,6 @@ public class InGameGUI : MonoBehaviour {
                         _gameMaster.GetComponent<Game>().cash -= allStructures[structureIndex].GetComponent<Tower>().cost;
                     }
                 }
-            }
-        } else {
-            // Check it tower needs to be selected
-            Ray towerRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit towerRaycastHit;
-            if (Physics.Raycast(towerRay, out towerRaycastHit, 1000, towerMask)) {
-                towerSelected = towerRaycastHit.collider.transform.parent.gameObject;
-
-                if (Input.GetMouseButtonDown(0)) {
-                    //Debug.DrawLine(towerRay.origin, towerRaycastHit.point);
-                    rays.Add(new CustomRay(towerRay.origin, towerRaycastHit.point));
-                    NGUITools.AddChild(towerSelected, uiPrefab);
->>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b:Assets/Resources/Scripts/GUI/InGameGUI.cs
-                }
-            } else {
-                towerSelected = null;
             }
         } else {
 
@@ -140,24 +107,6 @@ public class InGameGUI : MonoBehaviour {
                 towerInformationWindow.transform.FindChild("Exp").GetComponent<UILabel>().text = "Exp: " + exp;
 
                 SetTowerInfoWindow(true);
-            }
-
-            /*if (Physics.Raycast(towerRay, out towerRaycastHit, twoDGUIMask)) {
-                if (Input.GetMouseButtonDown(0)) {
-                    //SetTowerInfoWindow(false);
-                    print("Clicked inside 2dGUI");
-                }
-            }*/
-
-            /*else if (Input.GetMouseButtonDown(0) && !towerSelected) {
-                SetTowerInfoWindow(false);
-            }*/
-        }
-
-        // draw rays
-        if (rays.Capacity > 0) { 
-            foreach (CustomRay x in rays) {
-                Debug.DrawLine(x.start, x.end);
             }
         }
         
@@ -211,7 +160,6 @@ public class InGameGUI : MonoBehaviour {
         UpdateGUI();
     }
 
-<<<<<<< HEAD:Assets/Resources/Scripts/Game/InGameGUI.cs
     // Sets the visibility of the Tower Information Window
     public void SetTowerInfoWindow(bool set = false) {
         //isTowerInfoWindowVisible = !isTowerInfoWindowVisible;
@@ -234,15 +182,6 @@ public class InGameGUI : MonoBehaviour {
         if (btnObj) {
             print(UICheckbox.current.name + " selected.");
             towerSelected.GetComponent<Tower>().type = UICheckbox.current.name;
-=======
-    struct CustomRay {
-        public Vector3 start;
-        public Vector3 end;
-
-        public CustomRay(Vector3 x, Vector3 y) {
-            start = x;
-            end = y;
->>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b:Assets/Resources/Scripts/GUI/InGameGUI.cs
         }
     }
 }
