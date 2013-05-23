@@ -8,11 +8,16 @@ public class Tower : MonoBehaviour {
     public int level;
     public int experience;
     public string type;
+<<<<<<< HEAD
+
+    public GameObject laserPrefab;
+=======
     public int range;
     public int power;
     public float rateOfFire;
 
     public GameObject projectilePrefab;
+>>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b
     public float shotInterval;
     public float shotTimer;
     public bool canFire;

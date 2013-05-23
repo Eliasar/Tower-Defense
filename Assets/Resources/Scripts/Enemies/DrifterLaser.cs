@@ -18,7 +18,7 @@ public class DrifterLaser : MonoBehaviour {
 	}
 	
 	void Update () {
-        iTween.MoveBy(gameObject, ht);
+        //iTween.MoveBy(gameObject, ht);
 
         // For bullets fired by ships offscreen
         if (!renderer.isVisible) {

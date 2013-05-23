@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+# Unity3D .gitignore file.
+#  Store this file at the root of your local repository.
+.DS_Store
+Library/AssetImportState
+Library/AssetServerCacheV3
+Library/FailedAssetImports.txt
+Library/ScriptAssemblies
+Library/ScriptMapper
+Library/assetDatabase3
+Library/cache
+Library/expandedItems
+Library/metadata
+Library/previews
+Library/guidmapper
+Temp
+*.pidb
+build
+=======
 # Ignore The following directories / file extensions
 Library
 Temp
@@ -12,3 +31,4 @@ obj
 *.csproj
 *.pidb
 *.unityproj
+>>>>>>> dd73683a054e31cb8f220a884410596b0fa3c45b
