@@ -32,7 +32,7 @@ public class InGameGUI : MonoBehaviour {
     public GameObject towerSelected;
 
     // Score, cash, wave, lives labels
-    private GameObject _gameMaster;
+    public GameObject _gameMaster;
     public UILabel scoreCashLabel;
     public UILabel livesWaveLabel;
 
@@ -49,6 +49,7 @@ public class InGameGUI : MonoBehaviour {
 	void Update () {
 
         // If able to build, cast ray to find space
+        // Else, tower select information window
         if (isBuilding) {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
