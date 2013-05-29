@@ -5,21 +5,21 @@ using System.Collections.Generic;
 public class Tower : MonoBehaviour {
 
     // Self stats
+    public int ID;
     public int level;
-    public int experience;
+    public float experience;
     public string type;
     public int range;
     public int power;
     public float rateOfFire;            // set in inspector (unit: 1/s)
 
-    public GameObject projectilePrefab;
+    public GameObject projectilePrefab; // set in inspector
     public float shotInterval;          // set in inspector (unit: s)
     public float shotTimer;
     public bool canFire;
     public float rotationSpeed;
     public string targetType;
     public int cost;                    // set in inspector
-    public GameObject tooltipPrefab;    // set in inspector
 
     public List<GameObject> enemiesInRange;
     public GameObject closestEnemy;
@@ -28,6 +28,10 @@ public class Tower : MonoBehaviour {
         shotTimer = shotInterval;
         canFire = true;
         rotationSpeed = 3.0f;
+        level = 0;
+        experience = 0.0f;
+        range = 5;
+        power = 1;
 
         enemiesInRange = new List<GameObject>();
         closestEnemy = null;
@@ -123,6 +127,7 @@ public class Tower : MonoBehaviour {
             transform.position + dir,
             transform.rotation) as GameObject;
         temp.GetComponent<TowerProjectile>().target = target;
+        temp.GetComponent<TowerProjectile>().ID = ID;
 
         // Reset timer and canFire
         canFire = false;

@@ -19,7 +19,7 @@ public class Game : MonoBehaviour {
         lives = 10;
         cash = 100;
         score = 0;
-        currentWave = 1;
+        currentWave = 0;
 
         // Load level
         LoadLevel(1);
@@ -45,10 +45,17 @@ public class Game : MonoBehaviour {
         }
     }
 
+    public void StartNewWave() {
+        LoadLevel(1);
+    }
+
     IEnumerator LevelCoroutine(string type, float frequency, int amount, float speed = 1.0f, int waves = 5) {
 
         // Initial delay
         yield return new WaitForSeconds(1.0f);
+
+        // Increment wave
+        currentWave++;
 
         for (int i = 0; i < waves; i++) {
             for (int j = 0; j < amount; j++) {
@@ -65,9 +72,6 @@ public class Game : MonoBehaviour {
             while (enemyContainer.transform.childCount > 0) {
                 yield return new WaitForSeconds(0.5f);
             }
-
-            // Increment wave
-            currentWave++;
         }
     }
 

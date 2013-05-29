@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class InGameGUI : MonoBehaviour {
 
@@ -22,6 +23,7 @@ public class InGameGUI : MonoBehaviour {
     public GameObject[] allStructures;
     public UISlicedSprite[] buildBtnGraphics;
     public int structureIndex;
+    public List<int> towerIDs;
 
     // Tower Information window
     public bool isTowerInfoWindowVisible;
@@ -39,6 +41,7 @@ public class InGameGUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         structureIndex = 0;
+        towerIDs = new List<int>();
         UpdateGUI();
 	}
 	
@@ -71,8 +74,10 @@ public class InGameGUI : MonoBehaviour {
             if (Input.GetMouseButtonDown(0) && lastHitObj) {
                 if (lastHitObj.CompareTag("PlacementPlane_Open")) {
                     if (_gameMaster.GetComponent<Game>().cash > allStructures[structureIndex].GetComponent<Tower>().cost) {
-                        Instantiate(allStructures[structureIndex],
+                        GameObject tower = (GameObject)Instantiate(allStructures[structureIndex],
                             lastHitObj.transform.position, Quaternion.identity);
+                        tower.GetComponent<Tower>().ID = GenerateID();
+                        print("My ID is: " + tower.GetComponent<Tower>().ID);
                         lastHitObj.tag = "PlacementPlane_Taken";
                         _gameMaster.GetComponent<Game>().cash -= allStructures[structureIndex].GetComponent<Tower>().cost;
                     }
@@ -96,13 +101,13 @@ public class InGameGUI : MonoBehaviour {
 
                 string type;
                 int level;
-                int exp;
+                float exp;
 
                 type = towerSelected.GetComponent<Tower>().type;
                 level = towerSelected.GetComponent<Tower>().level;
                 exp = towerSelected.GetComponent<Tower>().experience;
 
-                towerInformationWindow.transform.FindChild("Type").GetComponent<UILabel>().text = "Type: " + type;
+                towerInformationWindow.transform.FindChild("Type").GetComponent<UILabel>().text = type;
                 towerInformationWindow.transform.FindChild("Level").GetComponent<UILabel>().text = "Level: " + level;
                 towerInformationWindow.transform.FindChild("Exp").GetComponent<UILabel>().text = "Exp: " + exp;
 
@@ -182,6 +187,16 @@ public class InGameGUI : MonoBehaviour {
         if (btnObj) {
             print(UICheckbox.current.name + " selected.");
             towerSelected.GetComponent<Tower>().type = UICheckbox.current.name;
+        }
+    }
+
+    // Generate the ID of the tower
+    int GenerateID() {
+        if (towerIDs.Count == 0)
+            return 1;
+        else {
+            towerIDs.Add(towerIDs.Count + 1);
+            return towerIDs.Count + 1;
         }
     }
 }

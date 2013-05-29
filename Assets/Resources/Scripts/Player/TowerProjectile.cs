@@ -5,6 +5,7 @@ public class TowerProjectile : MonoBehaviour {
 
     public float speed;
     public float power;
+    public int ID;
 
     public GameObject target;
 

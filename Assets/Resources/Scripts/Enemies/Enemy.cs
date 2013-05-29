@@ -4,23 +4,27 @@ using Pathfinding;
 
 public class Enemy : MonoBehaviour {
 
+    // General Stats
     public float HP;
     private float startingHP;
     public UISlider healthBar;
     public int cashValue;               // set in inspector
+    public float experienceValue;       // calculated in CalculateExperience
+    private bool takeLife;
 
     public GameObject explosionPrefab;  // set in inspector
 
+    // Used for tower shot leading
     private Vector3 lastPos;
     public Vector3 velocity;
 
+    // Used for pathfinding
     private Vector3 targetPosition;
     private Seeker seeker;
     private Path path;
     public float speed;                 // set in inspector
     private float nextWaypointDistance;
     private int currentWaypoint = 0;
-    private bool takeLife;
 
     void Awake() {
         startingHP = HP;
@@ -28,6 +32,9 @@ public class Enemy : MonoBehaviour {
         seeker = GetComponent<Seeker>();
         nextWaypointDistance = 0.1f;
         takeLife = false;
+
+        experienceValue = Mathf.Log(GameObject.Find("_Game Master").GetComponent<Game>().currentWave);
+        experienceValue = Mathf.Round(experienceValue);
     }
 
     void Start() {
@@ -90,13 +97,23 @@ public class Enemy : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision col) {
-            if (col.gameObject.CompareTag("Player Laser"))
-                Hit(col.gameObject.GetComponent<TowerProjectile>().power);
-            if (col.gameObject.CompareTag("End Zone")) {
-                print("Got to the end." + Time.time);
-                Hit(HP);
-                takeLife = true;
+        if (col.gameObject.CompareTag("Player Laser")) {
+            Hit(col.gameObject.GetComponent<TowerProjectile>().power);
+            
+            // Award exp to tower
+            print("Hit by ID: " + col.gameObject.GetComponent<TowerProjectile>().ID);
+            GameObject[] towerList = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject tower in towerList) { 
+                if(tower.GetComponent<Tower>().ID == col.gameObject.GetComponent<TowerProjectile>().ID) {
+                    tower.GetComponent<Tower>().experience +=
+                        col.gameObject.GetComponent<TowerProjectile>().power / startingHP;
+                }
             }
+        }
+        if (col.gameObject.CompareTag("End Zone")) {
+            Hit(HP);
+            takeLife = true;
+        }
     }
 
     void Hit(float powerOfHit) {
